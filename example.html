@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Me We &amp; You</title>
+	<link rel="stylesheet" type="text/css" href="style.css" />
+	<link rel="stylesheet" type="text/css" href="jquery.dropdown.css" />
+    <script type="text/JavaScript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+	<script type="text/JavaScript" src="jquery.dropdown.js"></script>
+	<script type="text/JavaScript">
+	$(function() {
+		$("#singleTarget").dropdown();
+		$(".multipleTargets").dropdown();
+		$(".dropdownWithoutUl").dropdown({
+			listSelector: ".list"
+		})
+	});
+	</script>
+</head>
+<body>
+	<div>single target</div>
+	<div id="singleTarget" class="listParent">
+		single list
+		<ul>
+			<li>item 1</li>
+			<li>item 2</li>
+			<li>item 3</li>
+		</ul>
+	</div>
+	<br /><br />
+	<div>multiple targets</div>
+	<div class="listParent multipleTargets">
+		list 1
+		<ul>
+			<li>item 1</li>
+			<li>item 2</li>
+			<li>item 3</li>
+		</ul>
+	</div>
+	<div class="listParent multipleTargets">
+		list 22235
+		<ul>
+			<li>item 1</li>
+			<li>item 2</li>
+			<li>item 3</li>
+			<li>item 4</li>
+			<li>item 5</li>
+		</ul>
+	</div>
+	<div class="listParent multipleTargets">
+		list 3
+		<ul>
+			<li>item 1</li>
+			<li>item 2</li>
+		</ul>
+	</div>
+	<br /><br />
+	<div>list doesn't have to be ul or ul</div>
+	<div class="dropdownWithoutUl">
+		list of divs
+		<div class="list">
+			<div class="listItem">item 1</div>
+			<div class="listItem">item 2</div>
+			<div class="listItem">item 3</div>
+			<div class="listItem">item 4</div>
+		</div>
+	</div>
+</body>
+</html>
