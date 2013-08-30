@@ -3,10 +3,10 @@
 <head>
 	<meta charset="UTF-8" />
 	<title>Me We &amp; You</title>
-	<link rel="stylesheet" type="text/css" href="style.css" />
-	<link rel="stylesheet" type="text/css" href="jquery.dropdown.css" />
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
+	<link rel="stylesheet" type="text/css" href="../jquery.dropdown.css" />
     <script type="text/JavaScript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-	<script type="text/JavaScript" src="jquery.dropdown.js"></script>
+	<script type="text/JavaScript" src="../jquery.dropdown.js"></script>
 	<script type="text/JavaScript">
 	$(function() {
 		$("#singleTarget").dropdown();
@@ -28,31 +28,33 @@
 		</ul>
 	</div>
 	<br /><br />
-	<div>multiple targets</div>
-	<div class="listParent multipleTargets">
-		list 1
-		<ul>
-			<li>item 1</li>
-			<li>item 2</li>
-			<li>item 3</li>
-		</ul>
-	</div>
-	<div class="listParent multipleTargets">
-		list 22235
-		<ul>
-			<li>item 1</li>
-			<li>item 2</li>
-			<li>item 3</li>
-			<li>item 4</li>
-			<li>item 5</li>
-		</ul>
-	</div>
-	<div class="listParent multipleTargets">
-		list 3
-		<ul>
-			<li>item 1</li>
-			<li>item 2</li>
-		</ul>
+	<div class="scope">
+		<div>multiple targets</div>
+		<div class="listParent multipleTargets">
+			list 1
+			<ul>
+				<li>item 1</li>
+				<li>item 2</li>
+				<li>item 3</li>
+			</ul>
+		</div>
+		<div class="listParent multipleTargets">
+			list 2
+			<ul>
+				<li>item 1</li>
+				<li>item 2</li>
+				<li>item 3</li>
+				<li>item 4</li>
+				<li>item 5</li>
+			</ul>
+		</div>
+		<div class="listParent multipleTargets">
+			list 3
+			<ul>
+				<li>item 1</li>
+				<li>item 2</li>
+			</ul>
+		</div>
 	</div>
 	<br /><br />
 	<div>list doesn't have to be ul or ul</div>

@@ -1,4 +1,10 @@
 (function($) {
+
+	/**
+	@author: Olmo Kramer
+	@description: jQuery plugin to easily add dropdown effect to list-like items
+	 */
+
 	$.fn.dropdown = function(options) {
 		var that = this;
 		that.options = options;
@@ -80,7 +86,7 @@
 		}
 
 		function onMouseEnterList() {
-			closeList($(".dropdown-open"));
+			closeList($(this).siblings(".dropdown-open"));
 			$(this)
 				.off("mouseenter")
 				.addClass("dropdown-open")
