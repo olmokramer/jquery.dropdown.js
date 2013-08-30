@@ -32,7 +32,7 @@
             	listSelector: options.listSelector || getDefaultSettings("listSelector"),
             	listItemSelector: options.listItemSelector || getDefaultSettings("listItemSelector"),
             	complete: options.complete || getDefaultSettings("complete"),
-            	timeout: options.timeout || getDefaultSettings("timeout")
+            	timeout: typeof options.timeout !== "undefined" ? options.timeout : getDefaultSettings("timeout")
             }
         }
 
