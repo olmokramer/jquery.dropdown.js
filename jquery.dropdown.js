@@ -7,11 +7,6 @@
 
 	$.fn.dropdown = function(options) {
 		var that = this;
-		that.options = options;
-
-        /*
-        set that.config
-        */
 
         function getDefaultSettings(selector) {
         	var config = {
@@ -35,16 +30,6 @@
             	timeout: typeof options.timeout !== "undefined" ? options.timeout : getDefaultSettings("timeout")
             }
         }
-
-        if($(that).length === 1) {
-        	applyDropdown($(that));
-	    } else {
-	    	$(that).each(function() {
-	    		applyDropdown($(this));
-	    	});
-	    }
-
-		that.config.complete();
 
 		function applyDropdown(el) {
     		addClasses(el);
@@ -124,6 +109,9 @@
 			console.log("dropdown completed");
 		}
 
-
+		return this.each(function() {
+			applyDropdown($(this));
+			that.config.complete();
+		});
 	}
 })(jQuery);
