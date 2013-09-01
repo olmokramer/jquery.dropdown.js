@@ -1,0 +1,48 @@
+@brown: #534B26;
+@green: #00FF00;
+
+body {
+	background-color: grey;
+	font-family: 'Helvetica';
+	font-size: 20px;
+}
+
+.listParent {
+	height: 30px;
+	width: 150px;
+	display: inline-block;
+	background-color: white;
+
+	ul {
+		li {
+			background-color: @green;
+			color: @brown;
+			list-style-type: none;
+
+			&:hover {
+				background-color: @brown;
+				color: @green;
+			}
+		}
+	}
+}
+
+.dropdownWithoutUl {
+	height: 30px;
+	width: 150px;
+	display: inline-block;
+	background-color: white;
+
+	.list {
+		.listItem {
+			background-color: @green;
+			color: @brown;
+			list-style-type: none;
+
+			&:hover {
+				background-color: @brown;
+				color: @green;
+			}
+		}
+	}
+}

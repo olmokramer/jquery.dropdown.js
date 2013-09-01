@@ -1,0 +1,28 @@
+.dropdown {
+	* {
+		padding: 0;
+		border: 0;
+		margin: 0;
+	}
+
+	.dropdown-title-wrapper {
+		width: 100%;
+		height: 100%;
+	}
+
+	.dropdown-list-wrapper {
+		position: relative;
+		width: 100%;
+
+		.dropdown-list {
+			position: absolute;
+			width: 100%;
+			z-index: 999;
+
+			.dropdown-list-item {
+				width: 100%;
+				display: none;
+			}
+		}
+	}
+}
