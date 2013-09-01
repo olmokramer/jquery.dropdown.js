@@ -1,3 +1,4 @@
+"use strict";
 (function($) {
 
 	/**
@@ -5,113 +6,129 @@
 	@description: jQuery plugin to easily add dropdown effect to list-like items
 	 */
 
+	$.fn.dropdownApplyDropdown = function(config) {
+		return $(this)
+			.dropdownAddClasses(config)
+			.dropdownAttachEvents(config)
+			.dropdownApplyWrappers(config);
+	}
+
+	$.fn.dropdownAddClasses = function(config) {
+		return $(this)
+			.addClass("dropdown")
+			.find(config.listSelector)
+			.addClass("dropdown-list")
+			.find(config.listItemSelector)
+			.each(function() {
+				$(this).addClass("dropdown-list-item");
+			})
+			.parent()
+			.parent();
+	}
+
+	$.fn.dropdownAttachEvents = function(config) {
+		return $(this)
+			.on({
+				mouseenter: function() {
+					$(this).dropdownOnMouseEntersList(config);
+				},
+				mouseleave: function() {
+					$(this).dropdownOnMouseLeavesList(config);
+				}
+			});
+	}
+
+	$.fn.dropdownApplyWrappers = function(config) {
+		// find list;
+		var list = $("<div>")
+			.addClass("dropdown-list-wrapper")
+			.html($(this)
+				.find(config.listSelector)
+				.remove());
+
+		//find title
+		$(this)
+			.find(config.listSelector)
+			.remove();
+
+		var title = $("<div>")
+			.addClass("dropdown-title-wrapper")
+			.html($(this).html());
+
+		return $(this)
+			.html(title)
+			.append(list);
+	}
+
+	$.fn.dropdownOnMouseEntersList = function(config) {
+		return $(this)
+			.dropdownOpenList(config)
+			.siblings(".dropdown-open")
+			.dropdownCloseList(config)
+			.siblings(".dropdown-open");
+	}
+
+	$.fn.dropdownOnMouseLeavesList = function(config) {
+		var list = this;
+		var t = setTimeout(function() {
+			$(list).dropdownCloseList(config);
+		}, config.timeout);
+
+		return $(this).on("mouseenter", function() {
+			clearTimeout(t);
+			$(this).off("mouseenter");
+		});
+	}
+
+	$.fn.dropdownOpenList = function(config) {
+		$(this)
+			.off("mouseenter")
+			.addClass("dropdown-open")
+			.find(config.listSelector)
+			.find(config.listItemSelector)
+			.each(function() {
+				$(this)
+					.show()
+					.on("click", function() {
+						if($.isFunction(config.onItemClick)) config.onItemClick(this);
+					});
+			});
+
+		return $(this);
+	}
+
+	$.fn.dropdownCloseList = function(config) {
+		// var list = this;
+		$(this)
+			.on("mouseenter", function() {
+				$(this).dropdownOnMouseEntersList(config);
+			})
+			.removeClass("dropdown-open")
+			.find(config.listSelector)
+			.find(config.listItemSelector)
+			.each(function() {
+				$(this)
+					.hide()
+					.off("click");
+			});
+
+		return $(this);
+	}
+
 	$.fn.dropdown = function(options) {
 		var that = this;
 
-        function getDefaultSettings(selector) {
-        	var config = {
-        		listSelector : "ul",
-        		listItemSelector : "*",
-        		complete : complete,
-        		timeout : 500
-        	};
-
-        	if(selector) return config[selector];
-        	return config;
-        }
-
-        if (!options) {
-            that.config = getDefaultSettings();
-        } else {
-            that.config = {
-            	listSelector: options.listSelector || getDefaultSettings("listSelector"),
-            	listItemSelector: options.listItemSelector || getDefaultSettings("listItemSelector"),
-            	complete: options.complete || getDefaultSettings("complete"),
-            	timeout: typeof options.timeout !== "undefined" ? options.timeout : getDefaultSettings("timeout")
-            }
-        }
-
-		function applyDropdown(el) {
-    		addClasses(el);
-    		attachEvents(el);
-    		applyWrappers(el);
-		}
-
-		function addClasses(el) {
-			el
-				.addClass("dropdown")
-				.find(that.config.listSelector)
-				.addClass("dropdown-list")
-				.find(that.config.listItemSelector)
-				.each(function() {
-					$(this).addClass("dropdown-list-item")
-				});
-		}
-
-		function attachEvents(el) {
-			el.on({
-				mouseenter: onMouseEnterList,
-				mouseleave: onMouseLeaveList
-			});
-		}
-
-		function applyWrappers(el) {
-			// find list;
-			var list = $("<div>")
-				.addClass("dropdown-list-wrapper")
-				.html(el.clone().find(that.config.listSelector));
-
-			//find title
-			el.find(that.config.listSelector).remove();
-			var title = $("<div>")
-				.addClass("dropdown-title-wrapper")
-				.html(el.html());
-
-			el.html(title).append(list);
-		}
-
-		function onMouseEnterList() {
-			closeList($(this).siblings(".dropdown-open"));
-			$(this)
-				.off("mouseenter")
-				.addClass("dropdown-open")
-				.find(that.config.listSelector)
-				.find(that.config.listItemSelector)
-				.each(function() {
-					$(this).show();
-				});
-		}
-
-		function onMouseLeaveList() {
-			var list = this,
-				t = setTimeout(function() {
-					closeList($(list));
-				}, that.config.timeout);
-
-			$(this).on("mouseenter", function() {
-				clearTimeout(t);
-				$(this).off("mouseenter");
-			});
-		}
-
-		function closeList(el) {
-			el
-				.removeClass("dropdown-open")
-				.find(that.config.listSelector)
-				.find(that.config.listItemSelector)
-				.each(function() {
-					$(this).hide();
-					$(el).on("mouseenter", onMouseEnterList);
-				});
-		}
-
-		function complete() {
-			console.log("dropdown completed");
-		}
+		var config = $.extend({}, $.fn.dropdown.defaults, options);
 
 		return this.each(function() {
-			applyDropdown($(this));
-			that.config.complete();
+			$(this).dropdownApplyDropdown(config);
 		});
-	}
+	};
+
+	$.fn.dropdown.defaults = {
+    		listSelector : "ul, ol",
+    		listItemSelector : "*",
+    		onItemClick : null,
+    		timeout : 500
+		};
 })(jQuery);

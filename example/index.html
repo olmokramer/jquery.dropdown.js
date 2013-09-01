@@ -2,18 +2,23 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8" />
-	<title>Me We &amp; You</title>
+	<title>jquery.dropdown.js</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css" />
 	<link rel="stylesheet" type="text/css" href="../jquery.dropdown.css" />
     <script type="text/JavaScript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
 	<script type="text/JavaScript" src="../jquery.dropdown.js"></script>
 	<script type="text/JavaScript">
 	$(function() {
-		$("#singleTarget").dropdown();
+		$("#singleTarget").dropdown({
+			timeout: 2000
+		});
 		$(".multipleTargets").dropdown();
-		$(".dropdownWithoutUl").dropdown({
-			listSelector: ".list"
-		})
+		$("#dropdownWithoutUl").dropdown({
+			listSelector: ".list",
+			onItemClick: function(e) {
+				alert("clicked!");
+			}
+		});
 	});
 	</script>
 </head>
@@ -22,49 +27,47 @@
 	<div id="singleTarget" class="listParent">
 		single list
 		<ul>
-			<li>item 1</li>
-			<li>item 2</li>
-			<li>item 3</li>
+			<li id="singleTargetItem1">item 1</li>
+			<li id="singleTargetItem2">item 2</li>
+			<li id="singleTargetItem3">item 3</li>
 		</ul>
 	</div>
-	<br /><br />
-	<div class="scope">
+	<div>
 		<div>multiple targets</div>
-		<div class="listParent multipleTargets">
+		<div id="multipleTargets1" class="listParent multipleTargets">
 			list 1
 			<ul>
-				<li>item 1</li>
-				<li>item 2</li>
-				<li>item 3</li>
+				<li id="multipleTargetsItem11">item 1</li>
+				<li id="multipleTargetsItem12">item 2</li>
+				<li id="multipleTargetsItem13">item 3</li>
 			</ul>
 		</div>
-		<div class="listParent multipleTargets">
+		<div id="multipleTargets2" class="listParent multipleTargets">
 			list 2
 			<ul>
-				<li>item 1</li>
-				<li>item 2</li>
-				<li>item 3</li>
-				<li>item 4</li>
-				<li>item 5</li>
+				<li id="multipleTargetsItem21">item 1</li>
+				<li id="multipleTargetsItem22">item 2</li>
+				<li id="multipleTargetsItem23">item 3</li>
+				<li id="multipleTargetsItem24">item 4</li>
+				<li id="multipleTargetsItem25">item 5</li>
 			</ul>
 		</div>
-		<div class="listParent multipleTargets">
+		<div id="multipleTargets3" class="listParent multipleTargets">
 			list 3
 			<ul>
-				<li>item 1</li>
-				<li>item 2</li>
+				<li id="multipleTargetsItem31">item 1</li>
+				<li id="multipleTargetsItem32">item 2</li>
 			</ul>
 		</div>
 	</div>
-	<br /><br />
 	<div>list doesn't have to be ul or ul</div>
-	<div class="dropdownWithoutUl">
+	<div id="dropdownWithoutUl" class="dropdownWithoutUl">
 		list of divs
 		<div class="list">
-			<div class="listItem">item 1</div>
-			<div class="listItem">item 2</div>
-			<div class="listItem">item 3</div>
-			<div class="listItem">item 4</div>
+			<div id="divList1" class="listItem">item 1</div>
+			<div id="divList2" class="listItem">item 2</div>
+			<div id="divList3" class="listItem">item 3</div>
+			<div id="divList4" class="listItem">item 4</div>
 		</div>
 	</div>
 </body>
