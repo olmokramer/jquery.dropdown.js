@@ -7,6 +7,10 @@ body {
 	font-size: 20px;
 }
 
+#singleTarget {
+	z-index: 2;
+}
+
 .listParent {
 	height: 30px;
 	width: 150px;
@@ -27,11 +31,17 @@ body {
 	}
 }
 
+#multipleTargetsContainer {
+	z-index: 1;
+	margin: 50px 0;
+}
+
 .dropdownWithoutUl {
 	height: 30px;
 	width: 150px;
 	display: inline-block;
 	background-color: white;
+	z-index: 0;
 
 	.list {
 		.listItem {

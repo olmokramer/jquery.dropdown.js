@@ -1,4 +1,6 @@
 .dropdown {
+	position: relative;
+
 	* {
 		padding: 0;
 		border: 0;
@@ -6,23 +8,30 @@
 	}
 
 	.dropdown-title-wrapper {
+		position: relative;
 		width: 100%;
 		height: 100%;
+		z-index: 500;
+		background-color: inherit;
 	}
 
 	.dropdown-list-wrapper {
 		position: relative;
 		width: 100%;
+		z-index: 499;
 
 		.dropdown-list {
 			position: absolute;
 			width: 100%;
-			z-index: 999;
 
 			.dropdown-list-item {
 				width: 100%;
 				display: none;
 			}
 		}
+	}
+
+	.dropdown-open .dropdown-list-wrapper {
+		z-index: 501;
 	}
 }

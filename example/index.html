@@ -10,33 +10,33 @@
 	<script type="text/JavaScript">
 	$(function() {
 		$("#singleTarget").dropdown({
-			timeout: 2000
+			closeTimeout: 2000
 		});
 		$(".multipleTargets").dropdown();
 		$("#dropdownWithoutUl").dropdown({
 			listSelector: ".list",
 			onItemClick: function(e) {
-				alert("clicked!");
+				console.log(e);
 			}
 		});
 	});
 	</script>
 </head>
-<body>
+<body id="body">
 	<div>single target</div>
 	<div id="singleTarget" class="listParent">
 		single list
-		<ul>
+		<ul id="singleTartetList">
 			<li id="singleTargetItem1">item 1</li>
 			<li id="singleTargetItem2">item 2</li>
 			<li id="singleTargetItem3">item 3</li>
 		</ul>
 	</div>
-	<div>
+	<div id="multipleTargetsContainer">
 		<div>multiple targets</div>
 		<div id="multipleTargets1" class="listParent multipleTargets">
 			list 1
-			<ul>
+			<ul id="multipleTargetsList1">
 				<li id="multipleTargetsItem11">item 1</li>
 				<li id="multipleTargetsItem12">item 2</li>
 				<li id="multipleTargetsItem13">item 3</li>
@@ -44,7 +44,7 @@
 		</div>
 		<div id="multipleTargets2" class="listParent multipleTargets">
 			list 2
-			<ul>
+			<ul id="multipleTargetsList2">
 				<li id="multipleTargetsItem21">item 1</li>
 				<li id="multipleTargetsItem22">item 2</li>
 				<li id="multipleTargetsItem23">item 3</li>
@@ -54,16 +54,16 @@
 		</div>
 		<div id="multipleTargets3" class="listParent multipleTargets">
 			list 3
-			<ul>
+			<ul id="multipleTargetsList3">
 				<li id="multipleTargetsItem31">item 1</li>
 				<li id="multipleTargetsItem32">item 2</li>
 			</ul>
 		</div>
 	</div>
-	<div>list doesn't have to be ul or ul</div>
+	<div>list doesn't have to be ul or ol</div>
 	<div id="dropdownWithoutUl" class="dropdownWithoutUl">
 		list of divs
-		<div class="list">
+		<div id="divList" class="list">
 			<div id="divList1" class="listItem">item 1</div>
 			<div id="divList2" class="listItem">item 2</div>
 			<div id="divList3" class="listItem">item 3</div>

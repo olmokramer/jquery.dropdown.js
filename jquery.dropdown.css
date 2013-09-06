@@ -1,3 +1,4 @@
-.dropdown *{padding:0;border:0;margin:0}
-.dropdown .dropdown-title-wrapper{width:100%;height:100%}
-.dropdown .dropdown-list-wrapper{position:relative;width:100%}.dropdown .dropdown-list-wrapper .dropdown-list{position:absolute;width:100%;z-index:999}.dropdown .dropdown-list-wrapper .dropdown-list .dropdown-list-item{width:100%;display:none}
+.dropdown{position:relative}.dropdown *{padding:0;border:0;margin:0}
+.dropdown .dropdown-title-wrapper{position:relative;width:100%;height:100%;z-index:500;background-color:inherit}
+.dropdown .dropdown-list-wrapper{position:relative;width:100%;z-index:499}.dropdown .dropdown-list-wrapper .dropdown-list{position:absolute;width:100%}.dropdown .dropdown-list-wrapper .dropdown-list .dropdown-list-item{width:100%;display:none}
+.dropdown .dropdown-open .dropdown-list-wrapper{z-index:501}

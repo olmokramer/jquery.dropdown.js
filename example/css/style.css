@@ -1,3 +1,5 @@
 body{background-color:#808080;font-family:'Helvetica';font-size:20px}
+#singleTarget{z-index:2}
 .listParent{height:30px;width:150px;display:inline-block;background-color:#fff}.listParent ul li{background-color:#0f0;color:#534b26;list-style-type:none}.listParent ul li:hover{background-color:#534b26;color:#0f0}
-.dropdownWithoutUl{height:30px;width:150px;display:inline-block;background-color:#fff}.dropdownWithoutUl .list .listItem{background-color:#0f0;color:#534b26;list-style-type:none}.dropdownWithoutUl .list .listItem:hover{background-color:#534b26;color:#0f0}
+#multipleTargetsContainer{z-index:1;margin:50px 0}
+.dropdownWithoutUl{height:30px;width:150px;display:inline-block;background-color:#fff;z-index:0}.dropdownWithoutUl .list .listItem{background-color:#0f0;color:#534b26;list-style-type:none}.dropdownWithoutUl .list .listItem:hover{background-color:#534b26;color:#0f0}
