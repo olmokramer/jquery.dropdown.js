@@ -1,26 +1,91 @@
 <!doctype html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8" />
 	<title>jquery.dropdown.js</title>
+
+	<meta charset="UTF-8" />
+
 	<link rel="stylesheet" type="text/css" href="css/style.css" />
-	<link rel="stylesheet" type="text/css" href="../jquery.dropdown.css" />
+	<link rel="stylesheet" type="text/css" href="../jquery.jqdropdown.css" />
+
     <script type="text/JavaScript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-	<script type="text/JavaScript" src="../jquery.dropdown.js"></script>
+	<script type="text/JavaScript" src="../jquery.jqdropdown.js"></script>
 	<script type="text/JavaScript">
 	$(function() {
-		$("#singleTarget").dropdown({
-			closeTimeout: 2000
+		$.fn.jqDropdown.defaults.listTop = "30px";
+		$.fn.jqDropdown.defaults.listLeft = "0px";
+		$("#singleTarget").jqDropdown({
+			closeTimeout: 1000
 		});
-		$(".multipleTargets").dropdown();
-		$("#dropdownWithoutUl").dropdown({
+		$(".dropdownWithoutUl").jqDropdown({
 			listSelector: ".list",
-			onItemClick: function(e) {
-				console.log(e);
+			listTop: 0,
+			listLeft: "150px",
+			click: function(e) {
+				alert("Clicked item " + e.target.id);
+			}
+		});
+		$.fn.jqDropdown.defaults.click = function(e) {
+			alert("Clicked item " + e.target.id);
+		}
+		$(".multipleTargets").jqDropdown({
+			listTop: 0,
+			listLeft: 0,
+			openlist: function(el) {
+				$(el)
+					.find(".jqdropdown-list")
+					.animate({
+						top: "30px"
+					})
+					.find(".jqdropdown-list-item")
+					.each(function(i, e) {
+						$(this)
+							.css({
+								position: "absolute",
+								opacity: 0,
+								top: 0
+							})
+							.show()
+							.animate({
+								top: i * 25 + "px",
+								opacity: 1
+							});
+					});
+			},
+			closelist: function(el) {
+				$(el)
+					.find(".jqdropdown-list")
+					.animate({
+						top: 0
+					})
+					.find(".jqdropdown-list-item")
+					.each(function(i, e) {
+						$(this)
+							.animate({
+								top: 0,
+								opacity: 0
+							});
+					});
+			},
+			click: function(e) {
+				var clone = $("<p>")
+					.html($(this).html())
+					.css({
+						position: "absolute",
+						top: "30px",
+						left: 0,
+						width: "100%",
+						height: "100%",
+						"background-color": "#00FF00",
+						"z-index": -1,
+						margin: 0
+					});
+				$(this).parent().parent().append(clone);
 			}
 		});
 	});
 	</script>
+
 </head>
 <body id="body">
 	<div>single target</div>
@@ -60,14 +125,25 @@
 			</ul>
 		</div>
 	</div>
-	<div>list doesn't have to be ul or ol</div>
-	<div id="dropdownWithoutUl" class="dropdownWithoutUl">
-		list of divs
-		<div id="divList" class="list">
-			<div id="divList1" class="listItem">item 1</div>
-			<div id="divList2" class="listItem">item 2</div>
-			<div id="divList3" class="listItem">item 3</div>
-			<div id="divList4" class="listItem">item 4</div>
+	<div id="multipleDivs">
+		<div>list doesn't have to be ul or ol</div>
+		<div id="dropdownWithoutUl1" class="dropdownWithoutUl">
+			list of divs 1
+			<div id="divList1" class="list">
+				<div id="divListItem11" class="listItem">item 1</div>
+				<div id="divListItem12" class="listItem">item 2</div>
+				<div id="divListItem13" class="listItem">item 3</div>
+				<div id="divListItem14" class="listItem">item 4</div>
+			</div>
+		</div>
+		<div id="dropdownWithoutUl2" class="dropdownWithoutUl">
+			list of divs 2
+			<div id="divList2" class="list">
+				<div id="divListItem21" class="listItem">item 1</div>
+				<div id="divListItem22" class="listItem">item 2</div>
+				<div id="divListItem23" class="listItem">item 3</div>
+				<div id="divListItem24" class="listItem">item 4</div>
+			</div>
 		</div>
 	</div>
 </body>
